@@ -1,3 +1,8 @@
+/*
+Explorar funcoes do manipulador de imagens
+fazer gerador de codigo de cor a partir do rgb
+*/
+
 var args = process.argv.slice(2)
 var command = args[0]
 var colors = require('colors')

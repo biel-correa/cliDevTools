@@ -1,0 +1,24 @@
+{
+  "name": "conversor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node ./index.js",
+    "build": "nexe ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "file-dialog": "0.0.8",
+    "file-manager": "^2.0.0",
+    "image-to-base64": "^2.1.1",
+    "jimp": "^0.16.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nexe": "^3.3.7"
+  }
+}

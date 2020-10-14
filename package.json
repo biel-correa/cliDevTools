@@ -16,7 +16,8 @@
     "file-manager": "^2.0.0",
     "image-to-base64": "^2.1.1",
     "jimp": "^0.16.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sharp": "^0.26.1"
   },
   "devDependencies": {
     "nexe": "^3.3.7"

@@ -6,6 +6,7 @@ fazer gerador de codigo de cor a partir do rgb
 var args = process.argv.slice(2)
 var command = args[0]
 var colors = require('colors')
+const { greyscale } = require('jimp')
 
 if (command == 'convert64') {
     to64(args)
@@ -15,9 +16,27 @@ if (command == 'convert64') {
     help()
 }else if(command == 'svgtopng'){
     topng()
+}else if(command == 'togreyscale'){
+    togreyscale()
 }else {
     console.log("Command not found".red)
     help()
+}
+
+function togreyscale(){
+    let filename = args[1]
+    let path = filename
+    let sharp = require('sharp')
+    if (filename.slice(0,2) == '.\\' || filename.slice(0,2) == './') {
+        filename = filename.slice(2, filename.length)
+        filename = filename.slice(0, filename.length - 4)
+    }
+    sharp(path).greyscale(true).png().toFile('greyScaled-'+filename+".png").then(res=>{
+        console.log("Image successfully created as: ".blue + 'greyScaled-'+ filename + ".png")
+    }).catch(info=>{
+        console.log('Something went wrong'.red)
+        console.log(info.red)
+    })
 }
 
 function topng(){
@@ -41,6 +60,7 @@ function help(){
     console.log('convert64 [path-to-file]'.blue)
     console.log('resize [path-to-file] [width] [height]'.blue)
     console.log('topng [path-to-file]'.blue)
+    console.log('togreyscale [path-to-file]'.blue)
 }
 
 function resize(args) {

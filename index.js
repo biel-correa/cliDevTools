@@ -14,7 +14,7 @@ if (command == 'convert64') {
     resize(args)
 }else if(command == 'help'){
     help()
-}else if(command == 'svgtopng'){
+}else if(command == 'topng'){
     topng()
 }else if(command == 'togreyscale'){
     togreyscale()
@@ -83,21 +83,18 @@ function resize(args) {
         fileName = fileName.slice(2, fileName.length)
     }
     if (typeof (width) != 'string' && typeof (height) == 'string') {
-        console.log('a'.red)
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
             if (err) throw 'Something went wrong with the image, try another.'.red
             file.resize(parseInt(jimp.AUTO), parseInt(height)).write(height + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) != 'string') {
-        console.log('a'.blue)
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
             if (err) throw 'Something went wrong with the image, try another.'.red
             file.resize(parseInt(width), parseInt(jimp.AUTO)).write(width + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) == 'string') {
-        console.log('a'.green)
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
             if (err) throw 'Something went wrong with the image, try another.'.red

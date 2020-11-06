@@ -1,8 +1,3 @@
-/*
-Explorar funcoes do manipulador de imagens
-fazer gerador de codigo de cor a partir do rgb
-*/
-
 var args = process.argv.slice(2)
 var command = args[0]
 var colors = require('colors')
@@ -18,9 +13,23 @@ if (command == 'convert64') {
     topng()
 }else if(command == 'togreyscale'){
     togreyscale()
+}else if(command == 'browser'){
+    teste()
 }else {
-    console.log("Command not found".red)
+    console.log(colors.red("Command not found"))
     help()
+}
+
+function teste(){
+    let link = args[1]
+    let opn = require('opn')
+    
+    if (args[2] != undefined && link == "google" || args[2] != undefined && link == "g") {
+        let pesquisa = args[2].replace(/\s+/g, '+')
+        opn('https://google.com.br/search?ie=UTF-8&q=' + pesquisa)
+    }else{
+        opn('https://'+link)
+    }
 }
 
 function togreyscale(){
@@ -32,9 +41,9 @@ function togreyscale(){
         filename = filename.slice(0, filename.length - 4)
     }
     sharp(path).greyscale(true).png().toFile('greyScaled-'+filename+".png").then(res=>{
-        console.log("Image successfully created as: ".blue + 'greyScaled-'+ filename + ".png")
+        console.log(colors.blue("Image successfully created as: ") + 'greyScaled-'+ filename + ".png")
     }).catch(info=>{
-        console.log('Something went wrong'.red)
+        console.log(colors.red('Something went wrong'))
         console.log(info.red)
     })
 }
@@ -49,18 +58,19 @@ function topng(){
         filename = filename.slice(0, filename.length - 4)
     }
     sharp(path).png().toFile(filename + '.png').then(info => {
-        console.log('Image successfully created as: '.blue + filename + '.png')
+        console.log(colors.blue('Image successfully created as: ') + filename + '.png')
     }).catch(res =>{
-        console.log('Something went wrong'.red)
+        console.log(colors.red('Something went wrong'))
     })
 }
 
 function help(){
-    console.log('Existing commands:'.blue)
-    console.log('convert64 [path-to-file]'.blue)
-    console.log('resize [path-to-file] [width] [height]'.blue)
-    console.log('topng [path-to-file]'.blue)
-    console.log('togreyscale [path-to-file]'.blue)
+    console.log(colors.blue('Existing commands:'))
+    console.log(colors.blue('convert64 [path-to-file]'))
+    console.log(colors.blue('resize [path-to-file] [width] [height]'))
+    console.log(colors.blue('topng [path-to-file]'))
+    console.log(colors.blue('togreyscale [path-to-file]'))
+    console.log(colors.blue('browser [link or google] ["google search"]'))
 }
 
 function resize(args) {
@@ -77,27 +87,27 @@ function resize(args) {
 
 
     if (typeof (fileName) != 'string') {
-        console.log('File not set or not found'.red)
-        console.log('resize [path-to-file] [width] [height]'.blue)
+        console.log(colors.red('File not set or not found'))
+        console.log(colors.blue('resize [path-to-file] [width] [height]'))
     } else {
         fileName = fileName.slice(2, fileName.length)
     }
     if (typeof (width) != 'string' && typeof (height) == 'string') {
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
-            if (err) throw 'Something went wrong with the image, try another.'.red
+            if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(jimp.AUTO), parseInt(height)).write(height + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) != 'string') {
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
-            if (err) throw 'Something went wrong with the image, try another.'.red
+            if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(width), parseInt(jimp.AUTO)).write(width + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) == 'string') {
         let jimp = require('jimp')
         jimp.read(fileName, (err, file) => {
-            if (err) throw 'Something went wrong with the image, try another.'.red
+            if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(width), parseInt(height)).write(width + 'x' + height + '-' + fileName)
         })
     }
@@ -110,8 +120,8 @@ function to64(args) {
         fileName = fileName.slice(2, fileName.length)
     }
     if (fileName.length <= 0) {
-        console.log('No name passed'.red)
-        console.log('EX: conversor NomeDoArquivo.jpg'.blue)
+        console.log(colors.red('No name passed'))
+        console.log(colors.blue('EX: conversor NomeDoArquivo.jpg'))
     } else {
         base64('./' + fileName)
             .then((data) => {
@@ -121,9 +131,9 @@ function to64(args) {
                 let manager = new FileManager(path.join('./'))
                 let newName = fileName.slice(0, fileName.length - 4)
                 manager.saveFile('./64-' + newName, data)
-                console.log('File successfully created as: '.blue + '64-' + newName)
+                console.log(colors.blue('File successfully created as: ') + '64-' + newName)
             }).catch((res) => {
-                console.log('Not able to convert, check file name'.red)
+                console.log(colors.red('Not able to convert, check file name'))
             })
     }
 

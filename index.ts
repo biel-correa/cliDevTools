@@ -1,7 +1,6 @@
 var args = process.argv.slice(2)
 var command = args[0]
 var colors = require('colors')
-const { greyscale } = require('jimp')
 
 if (command == 'convert64') {
     to64(args)
@@ -13,14 +12,14 @@ if (command == 'convert64') {
     topng()
 }else if(command == 'togreyscale'){
     togreyscale()
-}else if(command == 'browser'){
-    teste()
+}else if(command == 'open'){
+    open()
 }else {
     console.log(colors.red("Command not found"))
     help()
 }
 
-function teste(){
+function open(){
     let link = args[1]
     let opn = require('opn')
     
@@ -70,7 +69,7 @@ function help(){
     console.log(colors.blue('resize [path-to-file] [width] [height]'))
     console.log(colors.blue('topng [path-to-file]'))
     console.log(colors.blue('togreyscale [path-to-file]'))
-    console.log(colors.blue('browser [link or google] ["google search"]'))
+    console.log(colors.blue('open [link or google] ["google search"]'))
 }
 
 function resize(args) {

@@ -1,5 +1,5 @@
-# Ferramentas
-Ferramentas usadas para facilitar a vida de alguns
+# CLIDevTools
+Tools that migth sav you some time 
 
-# Como instalar
-Baixe o arquivo em .exe e adicione o caminho a ele nas suas variáveis de ambiente($PATH), a partir dai é só usar
+# How to install
+Download the .exe file and add it to your ambient variables($PATH), then you can use it normaly

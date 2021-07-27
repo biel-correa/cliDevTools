@@ -1,14 +1,14 @@
 {
-  "name": "conversor",
+  "name": "cli_dev_tools",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "author": "biel-correa",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "node ./index.ts",
     "build": "nexe ./index.ts"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",

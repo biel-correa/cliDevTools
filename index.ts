@@ -14,9 +14,24 @@ if (command == 'convert64') {
     togreyscale()
 }else if(command == 'open'){
     open()
+}else if(command == 'color'){
+    colorPicker(args)
 }else {
     console.log(colors.red("Command not found"))
     help()
+}
+
+function colorPicker(args){
+    let opn = require('opn')
+    if (args[1] != undefined && args[1].length == 6) {
+        let color = args[1]
+        color.replace('#', '')
+        opn('https://coolors.co/' + color)
+    }else if(args[1] != undefined && args[1].length != 6){
+        console.log(colors.yellow("Please use a full size HEX color Ex: ") + colors.white("#FFFFFF"))
+    }else{
+        opn('https://coolors.co/000000')
+    }
 }
 
 function open(){

@@ -1,5 +1,5 @@
 {
-  "name": "clidevtools",
+  "name": "cli-dev-tools",
   "version": "1.0.0",
   "description": "Tools that migth save you some time",
   "main": "index.ts",

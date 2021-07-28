@@ -2,23 +2,32 @@ var args = process.argv.slice(2)
 var command = args[0]
 var colors = require('colors')
 
-if (command == 'convert64') {
-    to64(args)
-} else if (command == 'resize') {
-    resize(args)
-}else if(command == 'help'){
-    help()
-}else if(command == 'topng'){
-    topng()
-}else if(command == 'togreyscale'){
-    togreyscale()
-}else if(command == 'open'){
-    open()
-}else if(command == 'color'){
-    colorPicker(args)
-}else {
-    console.log(colors.red("Command not found"))
-    help()
+switch (command) {
+    case 'convert64':
+        to64(args)
+        break;
+    case 'resize':
+        resize(args)
+        break;
+    case 'help':
+        help()
+        break;
+    case 'topng':
+        topng()
+        break;
+    case 'togreyscale':
+        togreyscale()
+        break;
+    case 'open':
+        open()
+        break;
+    case 'color':
+        colorPicker(args)
+        break;
+    default:
+        console.log(colors.red("Command not found"))
+        help()
+        break;
 }
 
 function colorPicker(args){
@@ -84,7 +93,8 @@ function help(){
     console.log(colors.blue('resize [path-to-file] [width] [height]'))
     console.log(colors.blue('topng [path-to-file]'))
     console.log(colors.blue('togreyscale [path-to-file]'))
-    console.log(colors.blue('open [link or google] ["google search"]'))
+    console.log(colors.blue('open [exact-link or "google"] ["google search"]'))
+    console.log(colors.blue('color [HEX color](optional)'))
 }
 
 function resize(args) {

@@ -19,7 +19,7 @@ switch (command) {
         togreyscale()
         break;
     case 'open':
-        open()
+        openSearch()
         break;
     case 'color':
         colorPicker(args)
@@ -30,7 +30,7 @@ switch (command) {
         break;
 }
 
-function colorPicker(args){
+function colorPicker(args: any[]){
     let opn = require('opn')
     if (args[1] != undefined && args[1].length == 6) {
         let color = args[1]
@@ -43,7 +43,7 @@ function colorPicker(args){
     }
 }
 
-function open(){
+function openSearch(){
     let link = args[1]
     let opn = require('opn')
     
@@ -63,9 +63,9 @@ function togreyscale(){
         filename = filename.slice(2, filename.length)
         filename = filename.slice(0, filename.length - 4)
     }
-    sharp(path).greyscale(true).png().toFile('greyScaled-'+filename+".png").then(res=>{
+    sharp(path).greyscale(true).png().toFile('greyScaled-'+filename+".png").then((res:any)=>{
         console.log(colors.blue("Image successfully created as: ") + 'greyScaled-'+ filename + ".png")
-    }).catch(info=>{
+    }).catch((info:any)=>{
         console.log(colors.red('Something went wrong'))
         console.log(info.red)
     })
@@ -80,9 +80,9 @@ function topng(){
         filename = filename.slice(2, filename.length)
         filename = filename.slice(0, filename.length - 4)
     }
-    sharp(path).png().toFile(filename + '.png').then(info => {
+    sharp(path).png().toFile(filename + '.png').then((info:any) => {
         console.log(colors.blue('Image successfully created as: ') + filename + '.png')
-    }).catch(res =>{
+    }).catch((res:any) =>{
         console.log(colors.red('Something went wrong'))
     })
 }
@@ -97,7 +97,7 @@ function help(){
     console.log(colors.blue('color [HEX color](optional)'))
 }
 
-function resize(args) {
+function resize(args:any) {
     let fileName = args[1]
     let width = args[2]
     let height = args[3]
@@ -118,26 +118,26 @@ function resize(args) {
     }
     if (typeof (width) != 'string' && typeof (height) == 'string') {
         let jimp = require('jimp')
-        jimp.read(fileName, (err, file) => {
+        jimp.read(fileName, (err:any, file:any) => {
             if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(jimp.AUTO), parseInt(height)).write(height + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) != 'string') {
         let jimp = require('jimp')
-        jimp.read(fileName, (err, file) => {
+        jimp.read(fileName, (err:any, file:any) => {
             if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(width), parseInt(jimp.AUTO)).write(width + '-' + fileName)
         })
     } else if (typeof (width) == 'string' && typeof (height) == 'string') {
         let jimp = require('jimp')
-        jimp.read(fileName, (err, file) => {
+        jimp.read(fileName, (err:any, file:any) => {
             if (err) throw colors.red('Something went wrong with the image, try another.')
             file.resize(parseInt(width), parseInt(height)).write(width + 'x' + height + '-' + fileName)
         })
     }
 }
 
-function to64(args) {
+function to64(args:any) {
     var fileName = args[1]
     const base64 = require('./node_modules/image-to-base64/image-to-base64.min.js')
     if (fileName.slice(0, 2) == "./" || fileName.slice(0, 2) == ".\\") {
@@ -148,7 +148,7 @@ function to64(args) {
         console.log(colors.blue('EX: conversor NomeDoArquivo.jpg'))
     } else {
         base64('./' + fileName)
-            .then((data) => {
+            .then((data:any) => {
                 const path = require('./node_modules/path/path.js')
                 const FileManager = require('./node_modules/file-manager/index.js')
 
@@ -156,7 +156,7 @@ function to64(args) {
                 let newName = fileName.slice(0, fileName.length - 4)
                 manager.saveFile('./64-' + newName, data)
                 console.log(colors.blue('File successfully created as: ') + '64-' + newName)
-            }).catch((res) => {
+            }).catch((res:any) => {
                 console.log(colors.red('Not able to convert, check file name'))
             })
     }

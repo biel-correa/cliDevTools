@@ -1,5 +1,5 @@
 # CLIDevTools
-Tools that migth sav you some time 
+Tools that migth save you some time 
 
 # How to install
 * Download the .exe file in the installer folder;

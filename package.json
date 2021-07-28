@@ -1,15 +1,13 @@
 {
   "name": "cli_dev_tools",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tools that migth save you some time",
   "main": "index.ts",
   "author": "biel-correa",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "node ./index.ts",
-    "build": "nexe ./index.ts"
+    "start": "node ./index.ts"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "colors": "^1.4.0",
     "file-dialog": "0.0.8",
@@ -21,6 +19,6 @@
     "sharp": "^0.26.1"
   },
   "devDependencies": {
-    "nexe": "^4.0.0-beta.18"
+    "@types/node": "^16.4.5"
   }
 }
